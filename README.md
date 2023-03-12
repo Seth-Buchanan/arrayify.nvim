@@ -12,7 +12,7 @@ Arrayify only currently supports Arrays in a handful of languages. Look into
 contributing to expand the plugin's functionality.
 ### Example
 First move cursor to location where you want the array.
-```vim
+```
 :Arrayify⏎
 Example: This⏎
 Example: is⏎
@@ -27,7 +27,7 @@ Example: ⏎
 Numbers or certain keywords typed are automatically formatted without quotes 
 based on the programming language being worked on.
 
-```vim
+```
 :Arrayify⏎
 Example: One⏎
 Example: 2⏎
@@ -47,7 +47,7 @@ Plug 'Seth-Buchanan/arrayify.nvim'
 
 ```
 
-## TODO
+# TODO
 
 1. Make the Arrayify function able to accept an array of strings as an argument instead 
 of input for whatever reason people would need that for.
@@ -63,14 +63,11 @@ variables.
 5. Look into cleaner methods of file type detection.
 
 6. Get rid of the big if else statement for recognizing file types and instead
-make the file types the key in a map or name for a struct. The map would
-then be iterated though with the symbols for the correct language loaded. 
-This would make it where new languages can be supported by only adding a 
-new key, value pair.
+make the file types the key in a map or something simular.
 
 7. Better variable names.
 
-8. Add supported languages.
+8. Expand programming language support.
 
 9. Add type cast arrays for languages like Rust and Java. Starting with 
 languages that don't allow for mixed data type arrays.
@@ -98,7 +95,7 @@ array = ["this", "is", "an", "example"]
 When the user starts typing the plugin would delete "array" and put the 
 user into insert mode.
 
-2. Make the data structure multiple lines when it is long or has a bunch of 
+2. Make the data structure multiple lines when it is long or full of 
 syntactic fluff. For example, The following is a list of tuples in PowerShell:
 
 ```
