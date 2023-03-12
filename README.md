@@ -34,6 +34,7 @@ Example: 2⏎
 Example: False⏎
 Example: True⏎
 Example: five⏎
+Example: ⏎
 ```
 ```
 ["One", 2, False, True, "five"]
