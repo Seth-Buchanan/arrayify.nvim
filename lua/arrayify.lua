@@ -3,7 +3,8 @@ vim.api.nvim_create_user_command("Arrayify", function ()
     local syntax = SetSyntax()
 
     if syntax["pattern"] == "standard" then
-        local output = Standard(syntax)
+        local input = Input()
+        local output = StandardFormat(input, syntax)
         WriteAtCursor(output)
     else
         print "pattern not defined"
@@ -13,22 +14,32 @@ end, {})
 
 -- Standard function that follows that pattern:
 -- Bracket, quote, element, quote, deliniator, quote, element, quote, Bracket
-function Standard(syntax)
-    local output = syntax["brackets"][1]
-    while(true)
-        do
-            local input = vim.fn.input "Element: "
-            if input == "" then
-                break
-            elseif IsNotInteger(input) and not InList(syntax["keywords"], input) then
-                input = string.format("%s%s%s",
-                syntax["quote"], input, syntax["quote"])
-            end
-            output = string.format("%s%s%s", output, input, syntax["deliniator"])
+function Input()
+    local inputArray = {}
+    while(true) do
+        local input = vim.fn.input "Element: "
+        if input == "" then
+            break
+        else
+            table.insert(inputArray, input)
         end
-        -- Chops off the extra deliniator at end of string
-        output = output:sub(1, #output - string.len(syntax["deliniator"]))
-        return (output .. syntax["brackets"][2])
+    end
+    return inputArray
+end
+
+function StandardFormat(inputArray, syntax)
+    local output = syntax["brackets"][1]
+
+    for _, input in ipairs(inputArray) do
+
+        if IsNotInteger(input) and not InList(syntax["keywords"], input) then
+            input = string.format("%s%s%s",
+            syntax["quote"], input, syntax["quote"])
+        end
+        output = string.format("%s%s%s", output, input, syntax["deliniator"])
+    end
+    output =  output:sub(1, #output - string.len(syntax["deliniator"]))
+    return output .. syntax["brackets"][2]
 end
 
 function SetSyntax()
@@ -100,3 +111,4 @@ function WriteAtCursor(str)
   local newline = line:sub(0, pos + 1 ) .. str .. line:sub(pos + 2)
   vim.api.nvim_set_current_line(newline)
 end
+
