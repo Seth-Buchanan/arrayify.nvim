@@ -14,11 +14,11 @@ contributing to expand the plugin's functionality.
 First move cursor to location where you want the array.
 ```
 :Arrayify⏎
-Example: This⏎
-Example: is⏎
-Example: an⏎
-Example: example⏎
-Example: ⏎
+Element: This⏎
+Element: is⏎
+Element: an⏎
+Element: example⏎
+Element: ⏎
 
 ```
 ```
@@ -29,12 +29,12 @@ based on the programming language being worked on.
 
 ```
 :Arrayify⏎
-Example: One⏎
-Example: 2⏎
-Example: False⏎
-Example: True⏎
-Example: five⏎
-Example: ⏎
+Element: One⏎
+Element: 2⏎
+Element: False⏎
+Element: True⏎
+Element: five⏎
+Element: ⏎
 ```
 ```
 ["One", 2, False, True, "five"]
