@@ -7,7 +7,7 @@ vim.api.nvim_create_user_command("Arrayify", function ()
         local output = StandardFormat(input, syntax)
         WriteAtCursor(output)
     else
-        print "pattern not defined"
+        print("pattern not defined")
     end
 
 end, {})
@@ -38,6 +38,7 @@ function StandardFormat(inputArray, syntax)
         end
         output = string.format("%s%s%s", output, input, syntax["deliniator"])
     end
+    -- chops off the last deliniator
     output =  output:sub(1, #output - string.len(syntax["deliniator"]))
     return output .. syntax["brackets"][2]
 end
