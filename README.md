@@ -30,7 +30,7 @@ based on the programming language being worked on.
 ```
 :Arrayify⏎
 Element: One⏎
-Element: 2
+Element: 2⏎
 Element: False⏎
 Element: True⏎
 Element: five⏎
