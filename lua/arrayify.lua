@@ -40,51 +40,28 @@ function StandardFormat(inputArray, syntax)
 end
 
 function SetSyntax()
-	local syntax = {}
-	local filetype = vim.bo.filetype
-
-	-- Defualt Array symbols
+    local syntax = {}
 	syntax["brackets"] = { "[", "]" }
 	syntax["deliniator"] = ", "
 	syntax["keywords"] = { "True", "False" }
 	syntax["quote"] = '"'
 	syntax["pattern"] = "standard"
-	-- TODO: look into using a "map" for storing defualts
 
-	-- Changes to the Defualt symbols by file extention
-	-- Lua
-	if filetype == "lua" then
-		syntax["brackets"] = { "{", "}" }
-		syntax["keywords"] = { "true", "false" }
+    -- For each filetype in arrayify.nvim/ftplugin there is a file with 
+    -- the special syntax for each filetype. This checks if the ChangeSyntax
+    -- function exists for the current filetype and returns syntax if it exists
+    vim.opt.filetype = GetBufferFiletype()
 
-		-- Java
-	elseif filetype == "java" then
-		syntax["brackets"] = { "{", "};" }
-		syntax["keywords"] = { "true", "false" }
-
-		-- Python
-	elseif filetype == "python" then
-		syntax["quote"] = "'"
-
-		-- PowerShell
-	elseif filetype == "ps1" then
-		syntax["brackets"] = { "@(", ")" }
-		syntax["quote"] = "'"
-		syntax["keywords"] = {}
-
-		-- DOS Batch
-	elseif filetype == "dosbatch" then
-		syntax["brackets"] = { "", "" }
-		syntax["deliniator"] = " "
-		syntax["keywords"] = {}
-
-		-- Fortran
-	elseif filetype == "fortran" then
-		syntax["brackets"] = { "(/", "/)" }
-		syntax["deliniator"] = ","
-		syntax["quote"] = "'"
-	end
+    if (_G["ChangeSyntax"] ~= nil) then
+         syntax = ChangeSyntax(syntax)
+    end
 	return syntax
+end
+
+function GetBufferFiletype()
+    local current_buffer = vim.api.nvim_get_current_buf()
+    local filetype = vim.api.nvim_buf_get_option(current_buffer, 'filetype')
+    return filetype
 end
 
 -- returns true if string contains anything other than an integer
