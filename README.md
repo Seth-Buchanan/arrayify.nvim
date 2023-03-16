@@ -1,15 +1,14 @@
 # arrayify.nvim
-
-Quickly format arrays and other basic data structures across languages.
+Quickly format arrays across languages.
 
 ## Usage
-
 When the plugin is installed the user can type the :Arrayify command. This will
 give the user a prompt where they can array elements pressing enter after 
 each element. To print the array the user presses enter on a new empty prompt.
 
 Arrayify only currently supports Arrays in a handful of languages. Look into 
 contributing to expand the plugin's functionality.
+
 ### Example
 In normal mode, move the cursor right before where you want the array.
 ```
@@ -37,11 +36,10 @@ Element: five⏎
 Element: ⏎
 ```
 ```
-["One", 2 False, True, "five"]
+["One", 2, False, True, "five"]
 ```
 
 # Installation
-
 Install through any plugin manger. The following example is for vim-plug
 ```
 Plug 'Seth-Buchanan/arrayify.nvim'
@@ -49,24 +47,14 @@ Plug 'Seth-Buchanan/arrayify.nvim'
 ```
 
 # TODO
-
 * Make the Arrayify function able to accept an array of strings as an argument instead 
 of input for whatever reason people would need that for.
-
-* Make a better way to store syntax info.
 
 * Make a better way to decide when the input is finished so users can input
 empty strings.
 
 * Curate the list of keywords that don't get quotes like booleans and None type
 variables.
-
-* Look into cleaner methods of file type detection.
-
-* Get rid of the big if else statement for recognizing file types and instead
-make the file types the key in a map or something simular.
-
-* Better variable names.
 
 * Expand programming language support.
 
@@ -86,7 +74,6 @@ language.
 * Add better error messages.
 
 ## Features to consider
-
 * If the current line is empty, make the array with a placeholder name of "array".
 
 ```
